@@ -1,3 +1,5 @@
+<img src="./.github/Banner.png"/>
+
 # mc-build
 
 mc-build is a cli tool that helps with the creation of data packs through compiling a custom format to functions. the cli by default ships with just the mc language although you can add more languages by putting them in the `lang` folder in your project root.
