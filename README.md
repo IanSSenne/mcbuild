@@ -1,4 +1,4 @@
-<img src="./.github/Banner.png"/>
+<img src="./assets/Banner.png"/>
 
 # mc-build
 
