@@ -28,7 +28,7 @@ $ yarn global add mc-build
 ### examples
 
 #### functions
-```mcfunction
+```
 function example_function{
     say hello, this is a function
 }
