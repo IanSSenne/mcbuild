@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/IanSSenne/mcbuild/master/assets/Banner.png"/>
+<img src="https://raw.githubusercontent.com/IanSSenne/mcbuild/master/assets/BannerNB.png" alt="MCB Banner"/>
 
 # mc-build
 
@@ -15,12 +15,12 @@ mc-build is a cli tool that helps with the creation of data packs through compil
 
 ### yarn
 ```bash
-$ npm i -g mc-build
+$ yarn global add mc-build
 ```
 
 ### npm
 ```bash
-$ yarn global add mc-build
+$ npm i -g mc-build
 ```
 
 ## mc language format
