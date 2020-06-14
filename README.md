@@ -118,3 +118,19 @@ function ex{
   }
 }
 ```
+
+
+#### namespaces
+
+```
+namespace test{
+  function hello{
+    say hi
+  }
+}
+```
+is equivelent to
+```
+function test/hello{
+  say hi
+}```
