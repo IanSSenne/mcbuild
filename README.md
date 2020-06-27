@@ -222,12 +222,14 @@ will create a function at filename:foo/bar/baz/hello.mcfunction
 The src folder directories also effect namespacing. For instance the file `src/name.mc` will be addressed via `name:...` while `src/foo/bar/baz.mc` will be addressed via `foo:bar/baz/...`
 
 **Warning:** Using namespaces and the src file structure combined can cause conflicts:
+
 `src/foo/bar.mc`:
 ```
 function baz{
   say Hi
 }
 ```
+
 `src/foo.mc`:
 ```
 namespace bar{
