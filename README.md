@@ -51,7 +51,7 @@ clock 1.5d{
 ```
 function ex{
   !IF(this.dev){
-    This code will only appear in this function if the value of this.dev is truthy in the congfig
+    This code will only appear in this function if the value of this.dev is truthy in the config
   }
 }
 ```
@@ -207,7 +207,7 @@ function ex{
 
 
 #### Namespaces
-Namespaces are used to create multi-layer datapacks. Each namespace has it's own separate `tick` and `load` functions and `__generated__` folder.
+Namespaces are used to create multi-layer datapacks. Each namespace has it's own separate `tick` and `load` functions, clock functions, and `__generated__` folder.
 ```
 namespace foo/bar{
   namespace baz{
