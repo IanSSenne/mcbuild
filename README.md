@@ -1,4 +1,4 @@
-<img src="https://github.com/SnaveSutit/mcbuild/blob/master/assets/MCB%20Title%20B.png" alt="MCB Banner"/>
+<img src="https://github.com/IanSSenne/mcbuild/blob/master/assets/MCB%20Title%20B.png" alt="MCB Banner"/>
 
 # mc-build
 
