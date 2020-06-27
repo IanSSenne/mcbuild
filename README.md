@@ -76,7 +76,7 @@ function ex{
   }
 }
 ```
-Warning: Defining inline functions within compile-time loops is not a good idea as it will generate a different function for every loop
+**Warning**: Defining inline functions within compile-time loops is not a good idea as it will generate a different function for every loop
 
 ### Run Time If/Else/Elseif
 The if condition is an execute subcommand chain, eg: `if score foo bar matches 1..`
