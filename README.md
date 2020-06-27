@@ -51,7 +51,7 @@ clock 1.5d{
 ```
 function ex{
   !IF(this.dev){
-    This code will only appear in this function if the value of this.dev is truthy in the config
+    This code will only appear in this function if the value of dev is truthy in the config
   }
 }
 ```
@@ -60,7 +60,7 @@ function ex{
 ```
 function ex{
   !dev{
-    This code will only appear in this function if the value of this.dev is truthy in the config
+    This code will only appear in this function if the value of dev is truthy in the config
   }
 }
 ```
