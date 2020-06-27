@@ -25,13 +25,13 @@ $ npm i -g mc-build
 
 ## MC Language Examples
 
-### functions
+### Functions
 ```
 function example_function{
     say hello, this is a function
 }
 ```
-### clocks
+### Clocks
 ```
 clock 5t{
   say i will be called every 5 ticks
@@ -47,7 +47,7 @@ clock 1.5d{
 
 ```
 
-### compile time if
+### Compile Time If
 ```
 function ex{
   !IF(this.dev){
@@ -56,7 +56,7 @@ function ex{
 }
 ```
 
-### shorthand compile time if
+### Shorthand Compile Time If
 ```
 function ex{
   !dev{
@@ -65,7 +65,7 @@ function ex{
 }
 ```
 
-### compile time loop
+### Compile Time Loop
 `LOOP(count,var_name)`
 
 Repeats the following block `count` number of times durring compilation. The loop's value is passed as `this.var_name`
@@ -78,7 +78,7 @@ function ex{
 ```
 Warning: Defining inline functions within compile-time loops is not a good idea as it will generate a different function for every loop
 
-### run time if/else/elseif
+### Run Time If/Else/Elseif
 The if condition is an execute subcommand chain, eg: `if score foo bar matches 1..`
 ```
 if(if score foo bar matches 0){
@@ -102,7 +102,7 @@ function subtract {
 }
 ```
 
-### execute block
+### Execute Block
 Creates and inline function called via an execute command
 ```
 execute as @a at @s run{
@@ -110,7 +110,7 @@ execute as @a at @s run{
 }
 ```
 
-### inline block
+### Inline Block
 Creates an inline function
 ```
 inline{
@@ -119,7 +119,8 @@ inline{
 ```
 
 ### `$top`, `$parent`, and `$block`
-`$block` can be used to reference the current function that a command is ran in:
+#### `$block`
+`$block` references the current function that a command is ran in:
 ```
 function crash_my_game_plz_thangkz{
   say I'm an infinite loop!!
@@ -129,6 +130,7 @@ function crash_my_game_plz_thangkz{
 `$block` works in all forms of blocks:
 ```
 inline{
+  say I can haz infinity
   function $block
 }
 
@@ -146,18 +148,47 @@ wait(if score foo bar matches 1){
   function $block
 }
 ```
-
-
-
-#### compile time inline code blocks
-inline js code blocks are run at compile time and the result is embedded wherever it is.
+#### `$parent`
+`$parent` references the current function's parent function. Pretty self explanitory.
 ```
-function ex{
-  say <%Math.random()%>
+function foo{
+  inline{
+    say Wow, another infinite loop. Reallllly creative with these examples guys
+    function $parent
+  }
+}
+```
+`$parent` cannot be used in the base level of a function, or a clock. Doing so will throw an error durring compilation:
+```
+function foo{
+  function $parent
+}
+
+>>> ERROR: $parent used where there is no valid parent.
+```
+#### `$top`
+`$top` is used in if statements to refer to the block at the top of the if chain. In this example it will refer to the `inline` block:
+```
+function foo{
+  inline{
+    if(unless block ~ ~ ~ air){
+      say Hit Block
+    }else{
+      function $top
+    }
+  }
 }
 ```
 
-#### run time wait
+#### Compile Time Inline Code Blocks
+inline js code blocks are run at compile time and the result is embedded wherever it is.
+```
+function ex{
+  say Wow. <%Math.random()%> is a random number >.>
+}
+```
+
+#### Run Time Wait
 `wait(condition,poll_rate)`
 
 Waits until `condition` returns true
@@ -175,13 +206,15 @@ function ex{
 ```
 
 
-#### namespaces
-
+#### Namespaces
+Namespaces are used to create multi-layer datapacks. Each namespace has it's own separate `tick` and `load` functions and `__generated__` folder.
 ```
 namespace foo/bar{
-  function hello{
-    say hi
+  namespace baz{
+    function hello{
+      say Hello!
+    }
   }
 }
 ```
-will create a function at filename:foo/bar.mcfunction
+will create a function at filename:foo/bar/baz/hello.mcfunction
