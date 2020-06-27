@@ -218,3 +218,5 @@ namespace foo/bar{
 }
 ```
 will create a function at filename:foo/bar/baz/hello.mcfunction
+
+The src folder directories also effect namespacing. For instance the file `src/name.mc` will be addressed via `name:...` while `src/foo/bar/baz.mc` will be addressed via `foo:bar/baz/...`
