@@ -1,6 +1,6 @@
 {
     "name": "mc-build",
-    "version": "2.1.6",
+    "version": "2.1.7",
     "main": "index.js",
     "license": "MIT",
     "dependencies": {
@@ -14,8 +14,5 @@
     },
     "bin": {
         "mcb": "./cli.js"
-    },
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
     }
 }
