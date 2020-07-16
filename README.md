@@ -4,34 +4,46 @@
 
 mc-build is a cli tool that helps with the creation of data packs through compiling a custom format to functions. the cli by default ships with just the mc language although you can add more languages by putting them in the `lang` folder in your project root.
 
-
 ## cli
-|command | result|
-|--------|-------|
-|`mcb` | will build the project in the active directory|
-|`mcb -config [js,json]` | generate a config file based on the default configs of all loaded languages. |
+
+| command                 | result                                                                       |
+| ----------------------- | ---------------------------------------------------------------------------- |
+| `mcb`                   | will build the project in the active directory                               |
+| `mcb -config [js,json]` | generate a config file based on the default configs of all loaded languages. |
 
 ## installation
 
 ### yarn
+
 ```bash
 $ yarn global add mc-build
 ```
 
 ### npm
+
 ```bash
 $ npm i -g mc-build
 ```
 
 ## MC Language Examples
 
+### IMPORTANT!
+
+as of version 2.2.x there are changes to the syntax that may break your project.
+
+- `if`/`else if`/`else` has changed to `execute`/`execute if`/`else`
+- `inline` has changed to `block`
+
 ### Functions
+
 ```
 function example_function{
     say hello, this is a function
 }
 ```
+
 ### Clocks
+
 ```
 clock 5t{
   say i will be called every 5 ticks
@@ -48,6 +60,7 @@ clock 1.5d{
 ```
 
 ### Compile Time If
+
 ```
 function ex{
   !IF(this.dev){
@@ -57,6 +70,7 @@ function ex{
 ```
 
 ### Shorthand Compile Time If
+
 ```
 function ex{
   !dev{
@@ -66,9 +80,11 @@ function ex{
 ```
 
 ### Compile Time Loop
+
 `LOOP(count,var_name)`
 
 Repeats the following block `count` number of times durring compilation. The loop's value is passed as `this.var_name`
+
 ```
 function ex{
   LOOP(5,i){
@@ -76,20 +92,62 @@ function ex{
   }
 }
 ```
+
 **Warning**: Defining inline functions within compile-time loops is not a good idea as it will generate a different function for every loop
 
-### Run Time If/Else/Elseif
-The if condition is an execute subcommand chain, eg: `if score foo bar matches 1..`
+### Run Time async while/while/finally
+
+#### while(condition)
+
+`while(condition)`
+
+Repeats the following block until the `condition` is not met then calls the finally block.
+
+the `condition` is an execute sub command or chain of execute sub commands.
+
 ```
-if(if score foo bar matches 0){
+while(if score foo bar matches 10..){
+  scoreboard players add foo bar 1
+  say hi :)
+}finally{
+  say bye :(
+}
+```
+
+#### async while(condition,rate)
+
+`async while(condition,rate)`
+
+Repeats the following block every `rate` units of time until the `condition` is not met then calls the finally block.
+
+the `condition` is an execute sub command or chain of execute sub commands.
+`time` is a valid time for the schedule command.
+
+```
+async while(if score foo bar matches 10..,1t){
+  scoreboard players add foo bar 1
+  say hi :)
+}finally{
+  say bye :(
+}
+```
+
+### Run Time Execute/Execute if/Else
+
+The if condition is an execute subcommand chain, eg: `if score foo bar matches 1..`
+
+```
+execute(if score foo bar matches 0){
   say 0
-}else if(if score foo bar matches 1){
+}else execute(if score foo bar matches 1){
   say 1
 }else{
   say not 0 or 1
 }
 ```
+
 Note that if statements can be used recursively without issue:
+
 ```
 function subtract {
   if(if score foo bar matches 1..){
@@ -103,31 +161,40 @@ function subtract {
 ```
 
 ### Execute Block
+
 Creates and inline function called via an execute command
+
 ```
 execute as @a at @s run{
   say hi
 }
 ```
 
-### Inline Block
-Creates an inline function
+### Block
+
+Creates an function and calls it where the block is defined
+
 ```
-inline{
+block{
   say hi
 }
 ```
 
 ### `$top`, `$parent`, and `$block`
+
 #### `$block`
+
 `$block` references the current function that a command is ran in:
+
 ```
 function crash_my_game_plz_thangkz{
   say I'm an infinite loop!!
   function $block
 }
 ```
+
 `$block` works in all forms of blocks:
+
 ```
 inline{
   say I can haz infinity
@@ -148,8 +215,11 @@ wait(if score foo bar matches 1){
   function $block
 }
 ```
+
 #### `$parent`
+
 `$parent` references the current function's parent function. Pretty self explanitory.
+
 ```
 function foo{
   inline{
@@ -158,7 +228,9 @@ function foo{
   }
 }
 ```
+
 `$parent` cannot be used in the base level of a function, or a clock. Doing so will throw an error durring compilation:
+
 ```
 function foo{
   function $parent
@@ -166,8 +238,11 @@ function foo{
 
 >>> ERROR: $parent used where there is no valid parent.
 ```
+
 #### `$top`
+
 `$top` is used in if statements to refer to the block at the top of the if chain. In this example it will refer to the `inline` block:
+
 ```
 function foo{
   inline{
@@ -181,7 +256,9 @@ function foo{
 ```
 
 #### Compile Time Inline Code Blocks
+
 inline js code blocks are run at compile time and the result is embedded wherever it is.
+
 ```
 function ex{
   say Wow. <%Math.random()%> is a random number >.>
@@ -189,6 +266,7 @@ function ex{
 ```
 
 #### Run Time Wait
+
 `wait(condition,poll_rate)`
 
 Waits until `condition` returns true
@@ -205,9 +283,10 @@ function ex{
 }
 ```
 
-
 #### Namespaces
+
 Namespaces are used to create multi-layer datapacks. Each namespace has it's own separate `tick` and `load` functions, clock functions, and `__generated__` folder.
+
 ```
 namespace foo/bar{
   namespace baz{
@@ -217,6 +296,7 @@ namespace foo/bar{
   }
 }
 ```
+
 will create a function at filename:foo/bar/baz/hello.mcfunction
 
 The src folder directories also effect namespacing. For instance the file `src/name.mc` will be addressed via `name:...` while `src/foo/bar/baz.mc` will be addressed via `foo:bar/baz/...`
@@ -224,6 +304,7 @@ The src folder directories also effect namespacing. For instance the file `src/n
 **Warning:** Using namespaces and the src file structure combined can cause conflicts:
 
 `src/foo/bar.mc`:
+
 ```
 function baz{
   say Hi
@@ -231,6 +312,7 @@ function baz{
 ```
 
 `src/foo.mc`:
+
 ```
 namespace bar{
   function baz{
@@ -238,4 +320,5 @@ namespace bar{
   }
 }
 ```
+
 These baz functions would conflict as they share the same function path.
