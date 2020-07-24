@@ -322,3 +322,5 @@ namespace bar{
 ```
 
 These baz functions would conflict as they share the same function path.
+
+I am not affiliated with Mojang in any way.
