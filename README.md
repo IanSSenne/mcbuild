@@ -210,7 +210,7 @@ if(if score foo bar matches 1){
   function $block
 }
 
-wait(if score foo bar matches 1){
+wait(if score foo bar matches 1,1t){
   say All of these examples are infinite loops, they're just helping show where $block can be used
   function $block
 }
@@ -283,6 +283,30 @@ function ex{
 }
 ```
 
+#### Multi Line Script Block
+
+`<%%` and `%%>`
+
+the multiline script block can take a block of javascript and evaluate it without writing anything to the output file, it has access to 2 global values, a function `emit` which takes a string and will write it to the file and a constant `args` which is either an array or undefined. it is defined if the script block is used in a macro and contains an array of arguments to the macro.
+
+#### schedule blocks
+
+schedule blocks allow you to schedule a block for a later time. it will lose its execution context.
+
+```
+schedule 5t replace{
+  say hi in the future
+}
+```
+
+or
+
+```
+schedule 5t append{
+  say hi in the future
+}
+```
+
 #### Namespaces
 
 Namespaces are used to create multi-layer datapacks. Each namespace has it's own separate `tick` and `load` functions, clock functions, and `__generated__` folder.
@@ -324,3 +348,45 @@ namespace bar{
 These baz functions would conflict as they share the same function path.
 
 I am not affiliated with Mojang in any way.
+
+### MACROS
+
+#### import statement
+
+`import file.mcm`
+
+the import statement allows you to make the macros defined in another file accessible to the current file's scope
+
+```
+import ./test.mcm
+```
+
+#### top level macro statements (only \*.mcm)
+
+the top level macro statement is used in a macro file to declare a macro.
+
+```
+macro example{
+  say hi $$0
+}
+```
+
+#### macro arguments (only \*.mcm)
+
+macros can take arguments where the values `$$0` through `$$n` will be replaced with the nth argument when the macro is called.
+
+#### macro calls
+
+the `macro` statement can be used in any non top-level structure to call a macro, the first parameter is the name of the macro to use from the current file's scope. additional parameters are swapped into that macro for the macros arguments replacing the `$$n` placeholders.
+
+this example will say `hi Ian` in chat when run assuming the above macro example is used to define the macro test.
+
+```
+function example{
+  macro test Ian
+}
+```
+
+#### warn and error
+
+the `warn` and `error` keywords are compile time only and will either log a warning in the console containing the entire content of the line after them or throw a compiler error where the reason is the contents of the line after the keyword. these must be the first word in the line.
