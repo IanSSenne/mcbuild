@@ -347,8 +347,6 @@ namespace bar{
 
 These baz functions would conflict as they share the same function path.
 
-I am not affiliated with Mojang in any way.
-
 ### MACROS
 
 #### import statement
@@ -366,7 +364,7 @@ import ./test.mcm
 the top level macro statement is used in a macro file to declare a macro.
 
 ```
-macro example{
+macro test{
   say hi $$0
 }
 ```
@@ -390,3 +388,5 @@ function example{
 #### warn and error
 
 the `warn` and `error` keywords are compile time only and will either log a warning in the console containing the entire content of the line after them or throw a compiler error where the reason is the contents of the line after the keyword. these must be the first word in the line.
+
+# I am not affiliated with Mojang in any way.
