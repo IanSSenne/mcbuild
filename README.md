@@ -210,7 +210,7 @@ if(if score foo bar matches 1){
   function $block
 }
 
-wait(if score foo bar matches 1,1t){
+until(if score foo bar matches 1,1t){
   say All of these examples are infinite loops, they're just helping show where $block can be used
   function $block
 }
@@ -265,9 +265,9 @@ function ex{
 }
 ```
 
-#### Run Time Wait
+#### Run Time Until
 
-`wait(condition,poll_rate)`
+`until(condition,poll_rate)`
 
 Waits until `condition` returns true
 
@@ -277,7 +277,7 @@ Waits until `condition` returns true
 
 ```
 function ex{
-  wait(if score deaths value matches 10..,1s){
+  until(if score deaths value matches 10..,1s){
     say you have died 10 times.
   }
 }
