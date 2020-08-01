@@ -1,6 +1,6 @@
 {
     "name": "mc-build",
-    "version": "2.4.16",
+    "version": "2.4.19",
     "main": "index.js",
     "license": "MIT",
     "dependencies": {
