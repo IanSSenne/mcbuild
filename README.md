@@ -413,6 +413,6 @@ the `warn` and `error` keywords are compile time only and will either log a warn
 
 ## contact me
 
-you can contact me via the mc-build discord at (https://discord.gg/kpGqTDX)[https://discord.gg/kpGqTDX]
+you can contact me via the mc-build discord at [https://discord.gg/kpGqTDX](https://discord.gg/kpGqTDX)
 
 ### I as well as the mc-build project am not affiliated with Mojang in any way.
