@@ -1,5 +1,9 @@
 <img src="https://raw.githubusercontent.com/IanSSenne/mcbuild/master/assets/MCB%20Title%20B.png" alt="MCB Banner"/>
 
+## help
+
+feel free to come ask for help in the mc-build discord [https://discord.gg/kpGqTDX](https://discord.gg/kpGqTDX).
+
 # mc-build
 
 mc-build is a cli tool that helps with the creation of data packs through compiling a custom format to functions. the cli by default ships with just the mc language although you can add more languages by putting them in the `lang` folder in your project root.
@@ -29,6 +33,10 @@ $ yarn global add mc-build
 ```bash
 $ npm i -g mc-build
 ```
+
+### installation video
+
+you can find a video detailing installation for windows (https://streamable.com/bcljw4)[here].
 
 ## MC Language Examples
 
@@ -410,9 +418,5 @@ function example{
 #### warn and error
 
 the `warn` and `error` keywords are compile time only and will either log a warning in the console containing the entire content of the line after them or throw a compiler error where the reason is the contents of the line after the keyword. these must be the first word in the line.
-
-## contact me
-
-you can contact me via the mc-build discord at [https://discord.gg/kpGqTDX](https://discord.gg/kpGqTDX)
 
 ### I as well as the mc-build project am not affiliated with Mojang in any way.
