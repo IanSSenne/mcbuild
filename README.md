@@ -2,7 +2,7 @@
 
 ## need help?
 
-feel free to come ask for help in the mc-build discord [https://discord.gg/kpGqTDX](https://discord.gg/kpGqTDX).
+feel free to come ask for help in the mc-build discord https://discord.gg/kpGqTDX.
 
 # mc-build
 
@@ -20,7 +20,7 @@ mc-build is a cli tool that helps with the creation of data packs through compil
 
 ### prerequisites
 
-mc-build runs on nodejs, if you don't already have it you can get it here. (https://nodejs.org)[nodejs]
+mc-build runs on nodejs, if you don't already have it you can get it at https://nodejs.org
 
 ### yarn
 
@@ -36,7 +36,7 @@ $ npm i -g mc-build
 
 ### installation video
 
-you can find a video detailing installation for windows (here)[https://streamable.com/bcljw4].
+you can find a video detailing installation for windows at https://streamable.com/bcljw4.
 
 ## MC Language Examples
 
