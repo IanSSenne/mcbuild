@@ -6,12 +6,17 @@ mc-build is a cli tool that helps with the creation of data packs through compil
 
 ## cli
 
-| command                 | result                                                                       |
-| ----------------------- | ---------------------------------------------------------------------------- |
-| `mcb`                   | will build the project in the active directory                               |
-| `mcb -config [js,json]` | generate a config file based on the default configs of all loaded languages. |
+| command                 | result                                                                                                                      |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `mcb`                   | will build the project in the active directory                                                                              |
+| `mcb -config [js,json]` | generate a config file based on the default configs of all loaded languages.                                                |
+| `mcb -build`            | will cause mc-build to run a single build of the project and then exit, also sets the build flag in the js config to `true` |
 
 ## installation
+
+### prerequisites
+
+mc-build runs on nodejs, if you don't already have it you can get it here. (https://nodejs.org)[nodejs]
 
 ### yarn
 
@@ -29,10 +34,9 @@ $ npm i -g mc-build
 
 ### IMPORTANT!
 
-as of version 2.2.x there are changes to the syntax that may break your project.
+as of version 2.5.0 there are changes to the syntax that may break your project.
 
-- `if`/`else if`/`else` has changed to `execute`/`execute if`/`else`
-- `inline` has changed to `block`
+renamed `namespace` to `dir`
 
 ### Functions
 
@@ -307,12 +311,27 @@ schedule 5t append{
 }
 ```
 
-#### Namespaces
+#### Load block
 
-Namespaces are used to create multi-layer datapacks. Each namespace has it's own separate `tick` and `load` functions, clock functions, and `__generated__` folder.
+any commands inside this block will be run once at load, commands in side of this block will be DE-DUPED(no duplicates will be kept).
 
 ```
-namespace foo/bar{
+macro test{
+  load{
+    say hi
+    say hi
+  }
+}
+```
+
+in this case only one of the commands will be output as they are duplicates.
+
+#### Directories
+
+Directories are used to create multi-layer datapacks. Each Directory has it's own separate `tick` and `load` functions, clock functions, and `__generated__` folder.
+
+```
+dir foo{
   namespace baz{
     function hello{
       say Hello!
@@ -321,11 +340,11 @@ namespace foo/bar{
 }
 ```
 
-will create a function at filename:foo/bar/baz/hello.mcfunction
+will create a function at filename:foo/baz/hello.mcfunction
 
-The src folder directories also effect namespacing. For instance the file `src/name.mc` will be addressed via `name:...` while `src/foo/bar/baz.mc` will be addressed via `foo:bar/baz/...`
+The src folder directories also effect the output directories. For instance the file `src/name.mc` will be addressed via `name:...` while `src/foo/bar/baz.mc` will be addressed via `foo:bar/baz/...`
 
-**Warning:** Using namespaces and the src file structure combined can cause conflicts:
+**Warning:** Using directories and the src file structure combined can cause conflicts:
 
 `src/foo/bar.mc`:
 
@@ -338,7 +357,7 @@ function baz{
 `src/foo.mc`:
 
 ```
-namespace bar{
+dir bar{
   function baz{
     say Hello
   }
@@ -357,6 +376,7 @@ the import statement allows you to make the macros defined in another file acces
 
 ```
 import ./test.mcm
+import ./test
 ```
 
 #### top level macro statements (only \*.mcm)
@@ -377,6 +397,8 @@ macros can take arguments where the values `$$0` through `$$n` will be replaced 
 
 the `macro` statement can be used in any non top-level structure to call a macro, the first parameter is the name of the macro to use from the current file's scope. additional parameters are swapped into that macro for the macros arguments replacing the `$$n` placeholders.
 
+optionally inside of a \*.mc file you can call a macro just by using its name, the macro keyword is optional here.
+
 this example will say `hi Ian` in chat when run assuming the above macro example is used to define the macro test.
 
 ```
@@ -389,4 +411,8 @@ function example{
 
 the `warn` and `error` keywords are compile time only and will either log a warning in the console containing the entire content of the line after them or throw a compiler error where the reason is the contents of the line after the keyword. these must be the first word in the line.
 
-# I am not affiliated with Mojang in any way.
+## contact me
+
+you can contact me via the mc-build discord at (https://discord.gg/kpGqTDX)[https://discord.gg/kpGqTDX]
+
+### I as well as the mc-build project am not affiliated with Mojang in any way.
