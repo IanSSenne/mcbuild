@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/IanSSenne/mcbuild/master/assets/MCB%20Title%20B.png" alt="MCB Banner"/>
 
-## help
+## need help?
 
 feel free to come ask for help in the mc-build discord [https://discord.gg/kpGqTDX](https://discord.gg/kpGqTDX).
 
@@ -36,7 +36,7 @@ $ npm i -g mc-build
 
 ### installation video
 
-you can find a video detailing installation for windows (https://streamable.com/bcljw4)[here].
+you can find a video detailing installation for windows (here)[https://streamable.com/bcljw4].
 
 ## MC Language Examples
 
