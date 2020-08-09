@@ -9,8 +9,7 @@
         "fs": "^0.0.1-security",
         "merge-options": "^2.0.0",
         "node-watch": "^0.6.4",
-        "path": "^0.12.7",
-        "uuid": "^8.1.0"
+        "path": "^0.12.7"
     },
     "bin": {
         "mcb": "./cli.js"
