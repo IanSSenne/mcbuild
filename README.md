@@ -1,3 +1,6 @@
+# THIS REPO HAS MOVED
+it now lives at [https://github.com/mc-build/mc-build](https://github.com/mc-build/mc-build)
+
 <img src="https://raw.githubusercontent.com/IanSSenne/mcbuild/master/assets/MCB%20Title%20B.png" alt="MCB Banner"/>
 
 ## need help?
