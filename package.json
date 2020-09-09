@@ -1,13 +1,15 @@
 {
-    "name": "mc-build",
+    "name": "dev-mc-build",
     "version": "2.5.2",
     "main": "index.js",
     "license": "MIT",
     "dependencies": {
-        "bson": "^4.0.4",
         "chalk": "^4.0.0",
+        "download": "^8.0.0",
         "fs": "^0.0.1-security",
+        "https": "^1.0.0",
         "merge-options": "^2.0.0",
+        "node-fetch": "^2.6.1",
         "node-watch": "^0.6.4",
         "path": "^0.12.7"
     },
