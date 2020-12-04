@@ -1,3 +1,6 @@
+# THIS REPO HAS MOVED TO [HERE](https://github.com/mc-build/mc-build) AND WILL NOT BE MAINTAINED.
+# FOR MORE INFO ABOUT MC-BUILD YOU CAN VISIT THE SITE [HERE](https://mcbuild.dev)
+
 <img src="https://raw.githubusercontent.com/IanSSenne/mcbuild/master/assets/MCB%20Title%20B.png" alt="MCB Banner"/>
 
 ## need help?
